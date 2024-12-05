@@ -2,24 +2,23 @@ import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
-import { col } from "framer-motion/client";
 
 const IMAGES = [
-  "1.jpg",
-  "2.jpg",
-  "3.jpg",
-  "4.jpg",
+  "1.jpeg",
+  "2.jpeg",
+  "3.jpeg",
+  "4.jpeg",
   "5.jpeg?k=1",
-  "1.jpg?k=1",
-  "2.jpg?k=1",
-  "3.jpg?k=1",
-  "4.jpg?k=1",
+  "1.jpeg?k=1",
+  "2.jpeg?k=1",
+  "3.jpeg?k=1",
+  "4.jpeg?k=1",
   "5.jpeg?k=1",
 
-  "1.jpg?s=1",
-  "2.jpg?s=1",
-  "3.jpg?s=1",
-  "4.jpg?s=1",
+  "1.jpeg?s=1",
+  "2.jpeg?s=1",
+  "3.jpeg?s=1",
+  "4.jpeg?s=1",
   "5.jpeg?s=1",
 ];
 
@@ -39,9 +38,9 @@ function App() {
   const [direction, setDirection] = useState(1);
 
   return (
-    <div className="w-screen h-screen bg-neutral-900 pt-8 overflow-x-hidden">
+    <div className="w-screen h-screen bg-zinc-950 pt-8 overflow-x-hidden">
       <div className="w-full h-full max-w-4xl mx-auto px-4">
-        <div className="w-full aspect-video relative rounded overflow-hidden">
+        <div className="w-full aspect-video relative rounded overflow-hidden border border-white">
           <AnimatePresence initial={false} custom={direction}>
             <motion.img
               custom={direction}
@@ -79,16 +78,16 @@ function App() {
             <IoIosArrowForward />
           </button>
         </div>
-        <div className="flex h-14 mt-8 inset-x-0 justify-center overflow-hidden">
+        <div className="flex h-14 mt-8 inset-x-0  justify-center overflow-hidden">
           {
             <motion.div
-              className="flex aspect-[3/2] gap-1"
+              className="flex aspect-[3/2]"
               animate={{
                 x: `-${
                   (index * 100 * collapsedAspectRatio) / fullAspectRatio
                 }%`,
               }}
-              transition={{ type: "spring", duration: 1, bounce: 0.1 }}
+              transition={{ type: "spring", duration: 1, bounce: 0 }}
             >
               {IMAGES.map((image, i) => {
                 return (
@@ -97,11 +96,12 @@ function App() {
                     key={image}
                     className={`h-full object-cover aspect-[3/2] cursor-pointer shrink-0`}
                     animate={{
-                      marginLeft: i === index ? "12%" : 0,
-                      marginRight: i === index ? "12%" : 0,
+                      marginLeft: i === index ? "12px" : 0,
+                      marginRight: i === index ? "12px" : 0,
                       aspectRatio: i === index ? "3 / 2" : "1 / 3",
                     }}
                     onClick={() => setIndex(i)}
+                    transition={{ bounce: 0 }}
                   />
                 );
               })}
